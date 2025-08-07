@@ -9,7 +9,7 @@ bleu1_after = 20.92
 meteor_after = 17.22
 rouge_l_after = 21.63
 
-fig, ax = plt.subplots(figsize=(12, 8))
+fig, ax = plt.subplots(figsize=(16, 8))
 
 x_bleu1 = np.arange(0, 2)
 x_rouge_l = np.arange(3, 5)
@@ -24,16 +24,16 @@ bars_rouge_l_after = ax.bar(x_rouge_l[1], rouge_l_after, color='#DC143C', alpha=
 bars_meteor_before = ax.bar(x_meteor[0], meteor_before, color='#2E86AB', alpha=0.8, edgecolor='black', linewidth=0.5)
 bars_meteor_after = ax.bar(x_meteor[1], meteor_after, color='#DC143C', alpha=0.8, edgecolor='black', linewidth=0.5)
 
-ax.set_xlabel('Metrics', fontsize=12, fontweight='bold')
-ax.set_ylabel('Scores', fontsize=12, fontweight='bold')
-ax.set_title('Ego4D Ground Truth Captions Finetuned Benchmark', fontsize=16, fontweight='bold', pad=20)
+ax.set_xlabel('Metrics', fontsize=18, fontweight='bold')
+ax.set_ylabel('Scores', fontsize=18, fontweight='bold')
+ax.set_title('Ego4D Ground Truth Captions Finetuned Benchmark', fontsize=20, fontweight='bold', pad=20)
 
 all_x_positions = list(x_bleu1) + list(x_rouge_l) + list(x_meteor)
 all_labels = ['BLEU-1\nBefore', 'BLEU-1\nAfter', 'ROUGE-L\nBefore', 'ROUGE-L\nAfter', 'METEOR\nBefore', 'METEOR\nAfter']
 ax.set_xticks(all_x_positions)
-ax.set_xticklabels(all_labels, rotation=0, ha='center', fontsize=10)
+ax.set_xticklabels(all_labels, rotation=0, ha='center', fontsize=18)
 
-ax.legend(fontsize=11, bbox_to_anchor=(1.05, 1), loc='upper left')
+ax.legend(fontsize=18, bbox_to_anchor=(1.05, 1), loc='upper left')
 ax.grid(axis='y', alpha=0.3)
 
 def add_value_labels(bar_container, value):
@@ -50,9 +50,13 @@ add_value_labels(bars_meteor_before, meteor_before)
 add_value_labels(bars_meteor_after, meteor_after)
 
 plt.tight_layout()
+plt.savefig('before_after_comparison_chart.pdf', format='pdf', dpi=300, bbox_inches='tight')
+plt.savefig('/Users/joseph/Downloads/before_after_comparison_chart.pdf', format='pdf', dpi=300, bbox_inches='tight')
 plt.show()
 
 print("Before/After comparison chart generated successfully!")
+print("Chart saved as 'before_after_comparison_chart.pdf' in current directory")
+print("Chart also saved to Downloads folder")
 print("\nSummary of the data:")
 print(f"{'Model':<30} {'BLEU-1':<8} {'METEOR':<8} {'ROUGE-L':<8}")
 print("-" * 60)
